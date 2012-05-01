@@ -3,5 +3,9 @@ module Lava
 
     private
 
+    def can_edit?
+      true
+    end
+
   end
 end
