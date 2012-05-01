@@ -18,7 +18,7 @@ module Lava
       @element.update_attributes({:value => params[:value]}) if params[:value]
       @element.update_attributes(params[:element]) if params[:element]  
       args = {:width => params[:element][:width], :height => params[:element][:height]}
-      render :partial => "elements/#{@element.element_type}",  :locals => { :element => @element, :args => args }
+      render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element, :args => args }
     end
 
     def edit
@@ -28,7 +28,7 @@ module Lava
     def update
       @element = Element.find_or_create_element(params[:element])
       @element.update_attributes(params[:element])
-      render :partial => "elements/#{@element.element_type}",  :locals => { :element => @element }
+      render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element }
     end
 
     def destroy

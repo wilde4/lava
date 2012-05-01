@@ -1,13 +1,12 @@
 - if element.present?
   .cms{:id => "#{element.id}", :class => "editable #{args[:reference]}"}
-    = render "elements/text", { :element => element, :args => args }
+    = render "lava/elements/text", { :element => element, :args => args }
 - else
   .cms{:id => "", :class => "editable #{args[:reference]}"}
-    - if user_signed_in?
+    - if can_edit?
       Click to edit...
-    
 
-- if user_signed_in?
+- if can_edit?
   :css
     .editable{}
     .editable:hover{background-color:#ffc;}

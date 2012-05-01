@@ -1,8 +1,8 @@
 - path = element.present? && element.upload.present? ? element.upload.thumb("#{args[:width]}x#{args[:height]}\#").url : "no upload"
-- if((element.present? && element.upload.present?)||(user_signed_in?))
-  = render "elements/image", { :element => element, :args => args }
+- if ((element.present? && element.upload.present?) || can_edit?)
+  = render "lava/elements/image", { :element => element, :args => args }
 
-- if user_signed_in?
+- if can_edit?
   :css
     .editable{}
     .editable:hover{background-color:#ffc;}
@@ -45,10 +45,6 @@
       });
     }
     
-  
     $(document).ready(function(){
       initialize_ajax_upload_controls_#{element.reference}();
     });
-
-
-

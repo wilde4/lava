@@ -1,6 +1,10 @@
 module Lava
   module LavaHelper
 
+    def can_edit?
+      true
+    end
+
     def lava(args = {})
       supported_types = ["text", "image", "video"]
       raise ArgumentError, "No reference given." unless args.has_key?(:reference)
@@ -20,8 +24,8 @@ module Lava
       end
 
       element = Element.find_or_create_element(:element_type => element_type, :reference => args[:reference])
-      render "elements/element_#{element_type}", {:args => args, :element => element} if element.present?
+      render "lava/elements/element_#{element_type}", {:args => args, :element => element} if element.present?
     end
-    
+
   end
 end

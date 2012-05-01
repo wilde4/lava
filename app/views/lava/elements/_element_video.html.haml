@@ -1,16 +1,16 @@
 - if element.present?
   .cms{:id => "element_#{element.id}", :class => "editable #{args[:reference]}"}
-    = render "elements/video", { :element => element }
+    = render "lava/elements/video", { :element => element }
 
 - else
   .cms{:id => "element_", :class => "editable #{args[:reference]}"}
     Click to edit...
-    - if user_signed_in?
+    - if can_edit?
       .video_controls
         %ul
           %li= link_to "Add YouTube Video", nil, :id => "ajaxupload_#{args[:reference]}"
 
-- if user_signed_in?
+- if can_edit?
   :css
     .editable:hover{background-color:#ffc;}
 
