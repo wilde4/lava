@@ -1,0 +1,8 @@
+.bundle/
+log/*.log
+pkg/
+spec/dummy/app/controllers/*
+spec/dummy/config/initializers/lava.rb
+spec/dummy/db/*
+spec/dummy/log/*.log
+spec/dummy/tmp/

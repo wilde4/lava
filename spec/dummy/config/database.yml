@@ -1,0 +1,16 @@
+login: &login
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 20
+  username: root
+  password:
+
+development:
+  <<: *login
+  database: lava_development
+test: &test
+  <<: *login
+  database: lava_test
+cucumber:
+  <<: *test

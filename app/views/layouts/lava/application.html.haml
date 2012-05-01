@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "NONE,NOARCHIVE", :name => "robots"}
+    = csrf_meta_tag
+    = stylesheet_link_tag "lava/application.css", :media => :all
+    = javascript_include_tag "lava/application.js"
+  %body.lava
+    = yield

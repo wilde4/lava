@@ -1,0 +1,7 @@
+= Lava
+
+== Installation
+
+Add the following to your Gemfile:
+
+  gem "lava", "0.0.1", :git => "git@github.com:wilde4/lava_gem.git"
