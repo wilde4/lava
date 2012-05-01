@@ -1,5 +1,5 @@
 /*
- * = require "../bootstrap"
+ * = require "./bootstrap"
  */
 
  .insert_image { position: fixed !important; position: absolute; right: 10px; top: -1px; z-index: 999;}
@@ -20,7 +20,7 @@
   border-bottom:1px solid #eee59d;
   z-index:999;
 }
-.saving{background:#FFF2A3 url('/images/fbl.gif') 8px 5px no-repeat !important;padding-left:35px !important;}
+.saving{background:#FFF2A3 url('assets/lava/fbl.gif') 8px 5px no-repeat !important;padding-left:35px !important;}
 
 .cms{
   position:relative;
@@ -38,15 +38,13 @@
         display:inline;
         a{
           background:#f4f4f4;
-          display: inline;
-          line-height: 12px;
-          outline: none;
-
           border:1px #999 solid;
-          @include border-radius(3px);
           color:#000;
+          display: inline;
           font-size:11px;
+          line-height: 12px;
           margin: 0 0px 0 0;
+          outline: none;
           padding:4px;
           &:hover{
             background:#000;
