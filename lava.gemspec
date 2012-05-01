@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "haml",        "~>3.1.4"
   s.add_dependency "simple_form", "2.0.1"
-  s.add_dependency "slugged",     "1.1.0"
 
   s.add_development_dependency "cucumber-rails",      "1.3.0"
   s.add_development_dependency "database_cleaner",    "0.7.2"
