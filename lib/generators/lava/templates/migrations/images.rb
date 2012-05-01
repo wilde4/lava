@@ -1,4 +1,4 @@
-class CreateElementsTable < ActiveRecord::Migration
+class CreateImagesTable < ActiveRecord::Migration
   def self.up
     create_table :images, :force => true do |t|
       t.string   :upload_content_type
