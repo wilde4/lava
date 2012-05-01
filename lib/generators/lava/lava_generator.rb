@@ -41,4 +41,8 @@ class LavaGenerator < Rails::Generators::Base
     template "seeds.rb", "db/seeds.rb"
   end
 
+  def show_readme
+    readme "readme" if behavior == :invoke
+  end
+
 end
