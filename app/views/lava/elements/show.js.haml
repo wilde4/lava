@@ -1,0 +1,14 @@
+- if @element.element_type == "video"
+  = @element.value
+- elsif @element.element_type == "image"
+
+  / - width   = @element.present? ? @element.upload_width   : 0
+  /   - height  = @element.present? ? @element.upload_height  : 0
+  /   - path    = @element.present? ? @element.upload.thumb("#{width}x#{height}\#").url : ""
+  /   = image_tag(path, :width => "#{width}", :height => "#{height}", :alt => "", :style => "background:url('/images/stripe.png')")
+
+  =# lava({:element_type => "image", :reference => @element.reference, :width => @element.upload_width, :height => @element.upload_height})
+- elsif @element.element_type == "text"
+  =@element.value
+- else
+  what?

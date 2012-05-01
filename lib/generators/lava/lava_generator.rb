@@ -14,7 +14,7 @@ class LavaGenerator < Rails::Generators::Base
 
   def create_migration_file
     path = "db/migrate"
-    models = %w{elements}
+    models = %w{elements images}
 
     models.each do |m|
       migration_template "migrations/#{m}.rb", "#{path}/create_#{m}_table.rb"

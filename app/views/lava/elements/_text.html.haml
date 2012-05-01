@@ -1,0 +1,11 @@
+- unless element.value.blank?
+  - if args[:no_text_modifiers]
+    = raw element.value
+  - elsif args[:truncate].present?
+    = raw add_markup(truncate_words(element.value, args[:truncate]))
+  - else
+    = raw add_markup(element.value)
+
+- else
+  - if user_signed_in?
+    Click to edit...

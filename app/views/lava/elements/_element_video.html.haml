@@ -1,0 +1,34 @@
+- if element.present?
+  .cms{:id => "element_#{element.id}", :class => "editable #{args[:reference]}"}
+    = render "elements/video", { :element => element }
+
+- else
+  .cms{:id => "element_", :class => "editable #{args[:reference]}"}
+    Click to edit...
+    - if user_signed_in?
+      .video_controls
+        %ul
+          %li= link_to "Add YouTube Video", nil, :id => "ajaxupload_#{args[:reference]}"
+
+- if user_signed_in?
+  :css
+    .editable:hover{background-color:#ffc;}
+
+  - css_class = ".#{args[:reference]}"
+  :javascript
+    $("#{css_class}").editable("/elements", {
+      name:       "element[value]",
+      submitdata: { utf8: "✓", authenticity_token: #{form_authenticity_token.inspect}, element: { reference: "#{args[:reference]}", element_type: "#{args[:element_type]}" } },
+      indicator:  "Saving...",
+      #{element.present? ? "loadurl: '/elements/#{element.id}'," : ""}
+      type:       "text",
+      tooltip:    "Click to edit...",
+      onblur:     "ignore",
+      submit:     "OK",
+      cancel:     "Cancel",
+      callback:   function(value, settings) {
+        $("#ajax_status").removeClass('saving');
+        $('#ajax_status').text('complete');
+        setTimeout(function(){ $("#ajax_status").fadeOut() }, 2000);
+      }
+    });

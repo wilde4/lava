@@ -1,0 +1,54 @@
+- path = element.present? && element.upload.present? ? element.upload.thumb("#{args[:width]}x#{args[:height]}\#").url : "no upload"
+- if((element.present? && element.upload.present?)||(user_signed_in?))
+  = render "elements/image", { :element => element, :args => args }
+
+- if user_signed_in?
+  :css
+    .editable{}
+    .editable:hover{background-color:#ffc;}
+
+  :javascript
+    function initialize_ajax_upload_controls_#{element.reference}(){
+      new AjaxUpload("#ajaxupload_#{element.reference}",
+      {
+        action:   '/elements',
+        name:     'element[upload]',
+        onSubmit: function(file , ext)
+        {
+          if (ext && /^(jpg|png|jpeg|gif)$/.test(ext))
+          {
+            this.setData({
+              'element[element_type]':  "image",
+              'element[value]':   "ajax-upload",
+              'element[reference]':     "#{element.reference}",
+              'element[height]': "#{args[:height]}",
+              'element[width]':  "#{args[:width]}",
+              'utf8':                   "✓",
+              'authenticity_token':     #{form_authenticity_token.inspect}
+            });
+            $('#ajax_response').html('Uploading...');
+            $("#ajax_container").show();
+          }
+          else
+          {
+            $('#ajax_response').html('Error: Please select an image - jpg, png or gif.');
+            $("#ajax_container").show();
+            return false;
+          }
+        },
+        onComplete: function(file, response)
+        {
+          $("#ajax_container").hide();
+          $(".#{element.reference}").replaceWith(response);
+          initialize_ajax_upload_controls_#{element.reference}();
+        }
+      });
+    }
+    
+  
+    $(document).ready(function(){
+      initialize_ajax_upload_controls_#{element.reference}();
+    });
+
+
+

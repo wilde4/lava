@@ -4,8 +4,22 @@ module Lava
       extend ActiveSupport::Concern
 
       included do
-        # has_many ...
+        validates_presence_of :reference
+
+        file_accessor :upload
         
+        default_scope :order => "created_at DESC"
+
+        attr_accessor :width, :height
+
+        def self.find_or_create_element(element_attributes)
+          element = Element.find(:first, :conditions => {:reference => element_attributes[:reference], :element_type => element_attributes[:element_type]})
+          if element.nil?
+            element = Element.new(element_attributes)
+            element.save
+          end
+          element
+        end
       end
     end
   end
