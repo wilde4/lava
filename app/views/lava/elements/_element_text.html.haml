@@ -17,7 +17,14 @@
       $("#{css_class}").editable("/elements", {
 
         #{element.present? ? "loadurl: '/elements/#{element.id}?Rnd=' + Math.random().toString()," : ""}
-        submitdata: { utf8: "✓", authenticity_token: #{form_authenticity_token.inspect}, element: { reference: "#{args[:reference]}", element_type: "#{args[:element_type]}" } },
+        submitdata: { 
+          utf8: "✓",
+          authenticity_token: #{form_authenticity_token.inspect},
+          element: {
+            reference: "#{args[:reference]}",
+            element_type: "text"
+          }
+        },
         indicator:  "Saving...",
         type:       "#{args[:editor_type]}",
         rows:       "#{args[:editor_rows]}",

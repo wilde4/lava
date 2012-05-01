@@ -1,6 +1,6 @@
 - if element.present?
   .cms{:id => "element_#{element.id}", :class => "editable #{args[:reference]}"}
-    = render "lava/elements/video", { :element => element }
+    = render "lava/elements/video", { :element => element, :args => args }
 
 - else
   .cms{:id => "element_", :class => "editable #{args[:reference]}"}
@@ -18,7 +18,14 @@
   :javascript
     $("#{css_class}").editable("/elements", {
       name:       "element[value]",
-      submitdata: { utf8: "✓", authenticity_token: #{form_authenticity_token.inspect}, element: { reference: "#{args[:reference]}", element_type: "#{args[:element_type]}" } },
+      submitdata: {
+        utf8: "✓",
+        authenticity_token: #{form_authenticity_token.inspect},
+        element: {
+          reference: "#{args[:reference]}",
+          element_type: "video"
+        }
+      },
       indicator:  "Saving...",
       #{element.present? ? "loadurl: '/elements/#{element.id}'," : ""}
       type:       "text",
