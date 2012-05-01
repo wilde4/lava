@@ -3,8 +3,6 @@ module Lava
 
     layout false
 
-    def index; end
-
     def show
       @element = Element.find(params[:id])
     end
