@@ -1,0 +1,11 @@
+- unless element.value.blank?
+  - if args[:no_text_modifiers]
+    = raw element.value
+  - elsif args[:truncate].present?
+    = raw truncate_words(element.value, args[:truncate])
+  - else
+    = raw element.value
+
+- else
+  - if can_edit?
+    Click to edit...

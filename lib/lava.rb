@@ -1,7 +1,6 @@
 require "active_support/dependencies"
 require "haml"
 require "simple_form"
-require "slugged"
 
 module Lava
 

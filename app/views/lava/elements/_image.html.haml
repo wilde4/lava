@@ -1,0 +1,13 @@
+- width   = args[:width]
+- height  = args[:height]
+
+.cms{:id => "", :class => "editable #{element.reference}", :style => "width: #{width}px; height: #{height}px;"}
+  - unless element.upload.nil?
+    = image_tag(element.upload.thumb("#{width}x#{height}\#").url, :width => width, :height => height, :alt => "")
+  - else
+    = image_tag("/assets/lava/transparent-bg.gif", :width => width, :height => height, :alt => "", :style => "background:url('/assets/lava/stripe.png')")
+  - if can_edit?
+    .image_controls
+      %ul
+        %li{:id => "upload_link"}= link_to "Upload", nil, :id => "ajaxupload_#{element.reference}"
+        %li{:id => "delete_link"}=# link_to "Delete", lava.element_path(element.id), :method => :delete, :confirm => "Are you sure?"

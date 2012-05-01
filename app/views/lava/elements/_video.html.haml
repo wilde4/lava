@@ -1,0 +1,7 @@
+.cms{:id => "element_#{element.id}", :class => "editable #{element.reference}", :style => "width:#{args[:width]}px;height:#{args[:height] + 25}px"}
+  %iframe{:class => "youtube-player", :type => "text/html", :width => "#{args[:width]}", :height => "#{args[:height]}", :src => "http://www.youtube.com/embed/#{element.value}", :frameborder => "0"}
+  - if can_edit?
+    .video_controls
+      %ul
+        %li= link_to "Add YouTube Video", nil, :id => "ajaxupload_#{element.reference}"
+        /%li= link_to "Delete", lava.element_path(element.id), :confirm => 'Are you sure?', :method => :delete, :confirm => "Are you sure?"

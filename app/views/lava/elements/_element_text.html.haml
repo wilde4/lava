@@ -1,0 +1,37 @@
+- if element.present?
+  .cms{:id => "#{element.id}", :class => "editable #{args[:reference]}"}
+    = render "lava/elements/text", { :element => element, :args => args }
+- else
+  .cms{:id => "", :class => "editable #{args[:reference]}"}
+    - if can_edit?
+      Click to edit...
+
+- if can_edit?
+  :css
+    .editable{}
+    .editable:hover{background-color:#ffc;}
+
+  - css_class = ".#{args[:reference]}"
+  :javascript
+    $(document).ready(function(){
+      $("#{css_class}").editable("/elements", {
+
+        #{element.present? ? "loadurl: '/elements/#{element.id}?Rnd=' + Math.random().toString()," : ""}
+        submitdata: { 
+          utf8: "✓",
+          authenticity_token: #{form_authenticity_token.inspect},
+          element: {
+            reference: "#{args[:reference]}",
+            element_type: "text"
+          }
+        },
+        indicator:  "Saving...",
+        type:       "#{args[:editor_type]}",
+        rows:       "#{args[:editor_rows]}",
+        width:      "100%",
+        tooltip:    "Click to edit...",
+        onblur:     "ignore",
+        submit:     "OK",
+        cancel:     "Cancel"
+      });
+    });

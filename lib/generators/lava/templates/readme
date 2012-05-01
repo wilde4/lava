@@ -1,0 +1,21 @@
+/* -=-=-=-=-
+
+We're not quite there yet! There's some things for you to do (if you don't mind!)
+
+1) Add the following to application.js 
+  //= require "lava/application"
+
+2) Add the following to application.css
+  /* = require "lava/application" */
+
+3) Add the following to your routes: (Lava must be mounted as lava at the moment.)
+  mount Lava::Engine => "/", :as => "lava"
+
+4) rake db:migrate
+
+5) Have fun!
+
+
+Thanks!
+
+-=-=-=-=- */
