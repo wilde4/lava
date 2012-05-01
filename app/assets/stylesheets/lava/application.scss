@@ -1,3 +1,72 @@
 /*
  * = require "../bootstrap"
  */
+
+ .insert_image { position: fixed !important; position: absolute; right: 10px; top: -1px; z-index: 999;}
+.insert_file { position: fixed !important; position: absolute; right: 45px; top: -1px; z-index: 999;}
+#ajax_status{
+  position:fixed !important;
+  position:absolute;
+  right:90px;
+  top:0px;
+  background:#fff2a3;
+  display:none;
+  font-size:12px;
+  font-weight:bold;
+  padding:6px;
+  float:left;
+  border-left:1px solid #eee59d;
+  border-right:1px solid #eee59d;
+  border-bottom:1px solid #eee59d;
+  z-index:999;
+}
+.saving{background:#FFF2A3 url('/images/fbl.gif') 8px 5px no-repeat !important;padding-left:35px !important;}
+
+.cms{
+  position:relative;
+  i, em { font-style:italic;font-weight:normal; }
+
+  .image_controls, .text_controls, .video_controls{
+    position:absolute;
+    top:13px;
+    left:7px;
+    z-index:5000;
+    ul{
+      margin:0;
+      padding:0;
+      li#upload_link, li#delete_link{
+        display:inline;
+        a{
+          background:#f4f4f4;
+          display: inline;
+          line-height: 12px;
+          outline: none;
+
+          border:1px #999 solid;
+          @include border-radius(3px);
+          color:#000;
+          font-size:11px;
+          margin: 0 0px 0 0;
+          padding:4px;
+          &:hover{
+            background:#000;
+            color:#fff;
+          }
+        }
+      }
+    }
+  }
+  .video_controls{
+    position:relative;
+    top:0;
+    left:0;
+  }
+}
+
+.editable{
+  textarea{
+    display:block;
+    width:99% !important;
+  }
+  button{font-size:12px;font-weight:normal;}
+}
