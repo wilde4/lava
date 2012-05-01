@@ -13,10 +13,9 @@ module Lava
         attr_accessor :width, :height
 
         def self.find_or_create_element(element_attributes)
-          element = Element.find(:first, :conditions => {:reference => element_attributes[:reference], :element_type => element_attributes[:element_type]})
+          element = self.find(:first, :conditions => {:reference => element_attributes[:reference], :element_type => element_attributes[:element_type]})
           if element.nil?
-            element = Element.new(element_attributes)
-            element.save
+            element = self.create(element_attributes)
           end
           element
         end
