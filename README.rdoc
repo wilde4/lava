@@ -4,4 +4,8 @@
 
 Add the following to your Gemfile:
 
-  gem "lava", "0.0.1", :git => "git@github.com:wilde4/lava_gem.git"
+  gem "lava", "0.0.1", :git => "git@github.com:wilde4/lava.git"
+
+Once installed, you can run the Rails generator and add Lava goodness to your app.
+
+  rails generate lava
