@@ -1,4 +1,4 @@
-- unless element.value.blank?
+- if element.value.present?
   - if args[:no_text_modifiers]
     = raw element.value
   - elsif args[:truncate].present?

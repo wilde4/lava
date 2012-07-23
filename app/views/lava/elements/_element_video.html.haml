@@ -34,8 +34,8 @@
       submit:     "OK",
       cancel:     "Cancel",
       callback:   function(value, settings) {
-        $("#ajax_status").removeClass('saving');
-        $('#ajax_status').text('complete');
-        setTimeout(function(){ $("#ajax_status").fadeOut() }, 2000);
+        $("#ajax_container").removeClass('saving');
+        $('#ajax_container').text('complete');
+        setTimeout(function(){ $("#ajax_container").fadeOut() }, 2000);
       }
     });

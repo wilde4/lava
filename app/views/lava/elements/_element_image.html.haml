@@ -1,4 +1,8 @@
-- path = element.present? && element.upload.present? ? element.upload.thumb("#{args[:width]}x#{args[:height]}\#").url : "no upload"
+- if element.present? && element.upload.present?
+  - path = element.upload.thumb("#{args[:width]}x#{args[:height]}\#").url
+- else
+  - path = "no upload"
+
 - if ((element.present? && element.upload.present?) || can_edit?)
   = render "lava/elements/image", { :element => element, :args => args }
 
@@ -6,13 +10,13 @@
   :javascript
     captions['#{element.id}'] = "#{element.value.gsub('"','') rescue ''}";
     urls['#{element.id}'] = "#{element.url.gsub('"','') rescue ''}";
-    
+
     function initialize_ajax_upload_controls_#{element.reference}(){
-    
+
       if( $("#ajax_container").length == 0){
         $("body").append("<div id='ajax_container'><div id='ajax_response'></div></div>");
       }
-    
+
       new AjaxUpload("#ajaxupload_#{element.reference}",
       {
         action:   '/elements',
@@ -23,10 +27,10 @@
           {
             this.setData({
               'element[element_type]':  "image",
-              'element[value]':   "ajax-upload",
+              'element[value]':         "ajax-upload",
               'element[reference]':     "#{element.reference}",
-              'element[height]': "#{args[:height]}",
-              'element[width]':  "#{args[:width]}",
+              'element[height]':        "#{args[:height]}",
+              'element[width]':         "#{args[:width]}",
               'utf8':                   "✓",
               'authenticity_token':     #{form_authenticity_token.inspect}
             });
@@ -48,7 +52,7 @@
         }
       });
     }
-    
+
     $(document).ready(function(){
       initialize_ajax_upload_controls_#{element.reference}();
     });

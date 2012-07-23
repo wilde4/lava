@@ -10,15 +10,13 @@ Gem::Specification.new do |s|
   s.description   = ""
   s.summary       = "lava-#{s.version}"
 
-  s.add_dependency 'rmagick',   '~> 2.13.1'
   s.add_dependency 'aws-s3'
-  s.add_dependency 'rack-cache'
-  s.add_dependency 'dragonfly',   '~> 0.9.11'
-  s.add_dependency 'fog', '~> 1.3.1'
-    
-  s.add_dependency "haml",        "~>3.1.4"
-  s.add_dependency 'rack-cache',  '>= 0.5.3'
-  s.add_dependency "simple_form", "2.0.1"
+  s.add_dependency 'dragonfly',     '~> 0.9.11'
+  s.add_dependency 'fog',           '~> 1.3.1'
+  s.add_dependency 'haml',          '~> 3.1.4'
+  s.add_dependency 'rack-cache',    '>= 0.5.3'
+  s.add_dependency 'rmagick',       '~> 2.13.1'
+  s.add_dependency 'simple_form',   '2.0.1'
 
   s.add_development_dependency "cucumber-rails",      "1.3.0"
   s.add_development_dependency "database_cleaner",    "0.7.2"
