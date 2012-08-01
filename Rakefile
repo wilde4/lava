@@ -8,7 +8,6 @@ end
 
 require 'rake'
 require 'rake/rdoctask'
-
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |t|
