@@ -4,7 +4,7 @@
   - elsif args[:truncate].present?
     = raw truncate_words(element.value, args[:truncate])
   - else
-    = raw element.value
+    = raw add_markup(element.value)
 
 - else
   - if can_edit?
