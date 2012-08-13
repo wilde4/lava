@@ -3,11 +3,8 @@
   = render "lava/elements/image", { :element => element, :args => args }
 
 - if can_edit?
-  :css
-    .editable{}
-    .editable:hover{background-color:#ffc;}
-
   :javascript
+    captions['#{element.id}'] = "#{element.value.gsub('"','')}";
     function initialize_ajax_upload_controls_#{element.reference}(){
     
       if( $("#ajax_container").length == 0){

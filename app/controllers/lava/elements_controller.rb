@@ -24,9 +24,17 @@ module Lava
     end
 
     def update
-      @element = Lava::Element.find_or_create_element(params[:element])
+      @element = Lava::Element.find(params[:id])
+      params[:element][:value] = url_unescape(params[:element][:value])
       @element.update_attributes(params[:element])
-      render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element }
+      
+      respond_to do |format|
+        format.js
+        format.html {
+          render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element }          
+        }
+      end
+
     end
 
     def destroy
@@ -34,6 +42,15 @@ module Lava
       @element.destroy
       redirect_to :back
     end
+    
+    private
+    
+    def url_unescape(string)
+      string.tr('+', ' ').gsub(/((?:%[0-9a-fA-F]{2})+)/n) do
+        [$1.delete('%')].pack('H*')
+      end
+    end
+
 
   end
 end
