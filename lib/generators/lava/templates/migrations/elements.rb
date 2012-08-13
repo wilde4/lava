@@ -8,6 +8,7 @@ class CreateElementsTable < ActiveRecord::Migration
       t.string   :upload_uid
       t.string   :upload_name
       t.text     :value
+      t.text     :url
       t.datetime :created_at
       t.datetime :updated_at
     end

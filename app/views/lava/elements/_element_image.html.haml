@@ -4,7 +4,9 @@
 
 - if can_edit?
   :javascript
-    captions['#{element.id}'] = "#{element.value.gsub('"','')}";
+    captions['#{element.id}'] = "#{element.value.gsub('"','') rescue ''}";
+    urls['#{element.id}'] = "#{element.url.gsub('"','') rescue ''}";
+    
     function initialize_ajax_upload_controls_#{element.reference}(){
     
       if( $("#ajax_container").length == 0){

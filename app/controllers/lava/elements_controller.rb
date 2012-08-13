@@ -25,7 +25,8 @@ module Lava
 
     def update
       @element = Lava::Element.find(params[:id])
-      params[:element][:value] = url_unescape(params[:element][:value])
+      params[:element][:value] = url_unescape(params[:element][:value]) if params[:element][:value].present?
+      params[:element][:url] = url_unescape(params[:element][:url]) if params[:element][:url].present?
       @element.update_attributes(params[:element])
       
       respond_to do |format|

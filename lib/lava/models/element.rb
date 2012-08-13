@@ -4,7 +4,7 @@ module Lava
       extend ActiveSupport::Concern
 
       included do
-        attr_accessible :element_type, :reference, :value, :height, :width, :upload
+        attr_accessible :element_type, :reference, :value, :height, :width, :upload, :url
         attr_accessor :width, :height
         
         validates_presence_of :reference

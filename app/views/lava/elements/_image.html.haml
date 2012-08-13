@@ -3,7 +3,11 @@
 
 .cms{:id => "", :class => "editable #{element.reference}", :style => "width: #{width}px; height: #{height}px;"}
   - unless element.upload.nil?
-    = image_tag(element.upload.thumb("#{width}x#{height}\#").url, :width => width, :height => height, :alt => "")
+    - if element.url.present?
+      = link_to element.url, :title => element.value do
+        = image_tag(element.upload.thumb("#{width}x#{height}\#").url, :width => width, :height => height, :alt => "#{element.value}")
+    - else
+      = image_tag(element.upload.thumb("#{width}x#{height}\#").url, :width => width, :height => height, :alt => "#{element.value}")
   - else
     = image_tag("/assets/lava/transparent-bg.gif", :width => width, :height => height, :alt => "", :style => "background:url('/assets/lava/stripe.png')")
   - if can_edit?
@@ -14,6 +18,6 @@
           %li{:id => "upload_link"}= link_to "Upload an Image...", "#", :id => "ajaxupload_#{element.reference}"
         - else
           %li{:id => "delete_link"}= link_to "Caption", "#", :onclick => "return change_caption('#{element.id}');"
-          %li{:id => "delete_link"}= link_to "Link", "#", :onclick => "return myFunction();"
+          %li{:id => "delete_link"}= link_to "Link", "#", :onclick => "return change_url('#{element.id}');"
           %li{:id => "delete_link"}= link_to "Delete", element_path(element), :method => :delete, :confirm => "Delete this Image?"
           %li{:id => "upload_link"}= link_to "Upload...", "#", :id => "ajaxupload_#{element.reference}"
