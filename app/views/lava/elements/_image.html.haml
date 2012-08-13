@@ -19,5 +19,5 @@
         - else
           %li{:id => "delete_link"}= link_to "Caption", "#", :onclick => "return change_caption('#{element.id}');"
           %li{:id => "delete_link"}= link_to "Link", "#", :onclick => "return change_url('#{element.id}');"
-          %li{:id => "delete_link"}= link_to "Delete", element_path(element), :method => :delete, :confirm => "Delete this Image?"
+          %li{:id => "delete_link"}= link_to "Delete", lava.element_path(element), :method => :delete, :confirm => "Delete this Image?"
           %li{:id => "upload_link"}= link_to "Upload...", "#", :id => "ajaxupload_#{element.reference}"
