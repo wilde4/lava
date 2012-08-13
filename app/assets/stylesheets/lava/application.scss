@@ -1,61 +1,78 @@
  .lava{
-   .insert_image { position: fixed !important; position: absolute; right: 10px; top: -1px; z-index: 999;}
+  .insert_image { position: fixed !important; position: absolute; right: 10px; top: -1px; z-index: 999;}
   .insert_file { position: fixed !important; position: absolute; right: 45px; top: -1px; z-index: 999;}
-  #ajax_status{
+  
+  #ajax_container{
     position:fixed !important;
     position:absolute;
     right:90px;
     top:0px;
+    display: none;
     background:#fff2a3;
-    display:none;
+    border-radius: 0px 0px 4px 4px;
+    font-family: arial, sans-serif;
     font-size:12px;
     font-weight:bold;
-    padding:6px;
+    padding:6px 10px;
     float:left;
     border-left:1px solid #eee59d;
     border-right:1px solid #eee59d;
     border-bottom:1px solid #eee59d;
     z-index:999;
   }
+  
   .saving{background:#FFF2A3 url('assets/lava/fbl.gif') 8px 5px no-repeat !important;padding-left:35px !important;}
 
   .cms{
     position:relative;
     i, em { font-style:italic;font-weight:normal; }
 
-    .image_controls, .text_controls, .video_controls{
+    .image_controls {
       position:absolute;
-      top:13px;
-      left:7px;
+      top:3px;
+      left:3px;
       z-index:5000;
       ul{
         margin:0;
         padding:0;
         li#upload_link, li#delete_link{
           display:inline;
+          color: #fff;
+                    
           a{
-            background:#f4f4f4;
-            border:1px #999 solid;
-            color:#000;
+            background:#fff;
+            color: #777;
+            box-shadow: 1px 1px 1px #999 + 40;
+            border-radius: 2px;
+            font-weight: normal;
+            text-decoration: none;
+            font-family: arial;
             display: inline;
             font-size:11px;
-            line-height: 12px;
+            line-height: 11px;
             margin: 0 0px 0 0;
             outline: none;
-            padding:4px;
-            &:hover{
-              background:#000;
+            padding:3px 4px;
+            &:hover, &.hover {
+              background:#E35120;
               color:#fff;
+              cursor: pointer;
+              box-shadow: 1px 1px 1px #999;
+            }
+            &:active {
+              background:#E36B00;
+              color:#fff;
+              cursor: pointer;
+              position: relative;
+              top: 1px;
+              left: 1px;
+              box-shadow: 0px 0px 0px #111;
             }
           }
         }
       }
     }
-    .video_controls{
-      position:relative;
-      top:0;
-      left:0;
-    }
+
   }
 
   .editable{

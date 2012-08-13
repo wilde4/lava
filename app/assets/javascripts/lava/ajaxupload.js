@@ -281,7 +281,7 @@ AjaxUpload.prototype = {
 			,'padding': 0
 			,'width': '220px'
 			,'height': '30px'
-			,'fontSize': '14px'								
+			,'fontSize': '16px'								
 			,'opacity': 0
 			,'cursor': 'pointer'
 			,'display' : 'none'

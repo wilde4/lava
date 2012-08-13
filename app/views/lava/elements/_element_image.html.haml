@@ -9,6 +9,11 @@
 
   :javascript
     function initialize_ajax_upload_controls_#{element.reference}(){
+    
+      if( $("#ajax_container").length == 0){
+        $("body").append("<div id='ajax_container'><div id='ajax_response'></div></div>");
+      }
+    
       new AjaxUpload("#ajaxupload_#{element.reference}",
       {
         action:   '/elements',
