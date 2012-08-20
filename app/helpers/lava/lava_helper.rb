@@ -1,9 +1,9 @@
 module Lava
   module LavaHelper
 
-    def can_edit?
-      true
-    end
+    # def can_edit?
+    #   true
+    # end
 
     def lava(args = {})
       supported_types = ["text", "image", "video"]
