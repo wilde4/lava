@@ -1,6 +1,14 @@
 module Lava
   module LavaHelper
 
+    def add_markup(value)
+      # Custom add_markup method should be included
+      # in your project.  This will likely also include
+      # widget replacement codes and a markup converter.
+
+      value.split("\n").map{|p| "<p>#{p}</p>" if p.present? }.join("") rescue value
+    end
+
     def lava(args = {})
       supported_types = ["text", "image", "video"]
       raise ArgumentError, "No reference given." unless args.has_key?(:reference)
