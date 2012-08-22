@@ -23,7 +23,6 @@ group :production do
 end
 
 group :test do
-  gem "lava", :path => "../../"
   gem "cucumber-rails", :require => false
   gem "database_cleaner"
   gem "factory_girl"
