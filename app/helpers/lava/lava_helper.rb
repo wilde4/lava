@@ -1,10 +1,6 @@
 module Lava
   module LavaHelper
 
-    # def can_edit?
-    #   true
-    # end
-
     def lava(args = {})
       supported_types = ["text", "image", "video"]
       raise ArgumentError, "No reference given." unless args.has_key?(:reference)
