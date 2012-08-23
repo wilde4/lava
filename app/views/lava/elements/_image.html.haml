@@ -1,31 +1,27 @@
 - width       = args[:width]
 - height      = args[:height]
-- image_attrs = {:width => args[:width], :height => args[:height], :alt => ""}
+- image_attrs = {:width => args[:width], :height => args[:height], :alt => "#{element.value}"}
 
-<<<<<<< HEAD
-.cms{:id => "", :class => "editable #{element.reference}"}
+.cms{:id => "", :class => "editable #{element.reference}", :style => "width:#{width}px;height:#{height}px;"}
   - if element.upload.present?
     - if element.url.present?
       = link_to element.url, :title => element.value do
-        = image_tag(element.upload.thumb("#{width}x#{height}\#").url, :alt => "#{element.value}")
-    - else
-      = image_tag(element.upload.thumb("#{width}x#{height}\#").url, :alt => "#{element.value}")
-  - else
-    %div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
-=======
-.cms{:id => "", :class => "editable #{element.reference}", :style => "width:#{width}px;height:#{height}px;"}
-  - if element.upload.present?
-    - if args.has_key?(:url) && args[:url].present?
+        = image_tag(element.upload.thumb("#{width}x#{height}\#").url, image_attrs)
+    - elsif args.has_key?(:url) && args[:url].present?
       = link_to image_tag(element.upload.thumb("#{width}x#{height}\#").url, image_attrs), args[:url]
     - else
       = image_tag(element.upload.thumb("#{width}x#{height}\#").url, image_attrs)
   - else
-    - if args.has_key?(:url) && args[:url].present?
+    - if element.url.present?
+      /%div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
+      = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"})))
+    - elsif args.has_key?(:url) && args[:url].present?
+      /%div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
       = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"})), args[:url]
     - else
+      /%div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
       = image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
 
->>>>>>> refactoring
   - if can_edit?
     .image_controls
       %ul
