@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fog',           '~> 1.3.1'
   s.add_dependency 'haml',          '~> 3.1.4'
   s.add_dependency 'rack-cache',    '>= 0.5.3'
+  s.add_dependency 'redcarpet',     "~> 1.17.2"
   s.add_dependency 'rmagick',       '~> 2.13.1'
   s.add_dependency 'simple_form',   '2.0.1'
 
