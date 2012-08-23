@@ -16,6 +16,7 @@ module Lava
 
   module Models
     autoload :Element,   "lava/models/element"
+    autoload :Image,     "lava/models/image"
   end
 
   def self.setup
