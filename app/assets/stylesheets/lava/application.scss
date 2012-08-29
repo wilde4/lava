@@ -42,10 +42,8 @@
       font-weight:normal;
     }
 
-    .image_controls{}
     .text_controls{}
     .video_controls{}
-
     .image_controls {
       position:absolute;
       top:0px;
@@ -54,8 +52,10 @@
       z-index:5000;
 
       ul{
+        border-bottom:0;
         padding:0;
         margin: 1px 4px 0px 3px;
+
         li#upload_link, li#delete_link{
           display:inline;
           color: #fff;
@@ -95,7 +95,6 @@
         }
       }
     }
-
   }
 
   .editable{
