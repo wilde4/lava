@@ -1,6 +1,6 @@
 - width       = args[:width]
 - height      = args[:height]
-- image_attrs = {:width => args[:width], :height => args[:height], :alt => "#{element.value}"}
+- image_attrs = {:width => width, :height => height, :alt => "#{element.value}"}
 
 .cms{:id => "", :class => "editable #{element.reference}", :style => "width:#{width}px;height:#{height}px;"}
   - if element.upload.present?
@@ -13,13 +13,10 @@
       = image_tag(element.upload.thumb("#{width}x#{height}\#").url, image_attrs)
   - else
     - if element.url.present?
-      -#%div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
       = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
     - elsif args.has_key?(:url) && args[:url].present?
-      -#%div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
       = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"})), args[:url]
     - else
-      -#%div{:style => "background:url('/assets/lava/stripe.png') top left; width: #{width}px; height: #{height}px;"}
       = image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
 
   - if can_edit?

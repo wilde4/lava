@@ -1,6 +1,5 @@
 module Lava
   class ElementsController < Lava::ApplicationController
-
     layout false
 
     def show
@@ -28,14 +27,13 @@ module Lava
       params[:element][:value] = url_unescape(params[:element][:value]) if params[:element][:value].present?
       params[:element][:url] = url_unescape(params[:element][:url]) if params[:element][:url].present?
       @element.update_attributes(params[:element])
-      
+
       respond_to do |format|
         format.js
         format.html {
-          render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element }          
+          render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element }
         }
       end
-
     end
 
     def destroy
@@ -43,15 +41,14 @@ module Lava
       @element.destroy
       redirect_to :back
     end
-    
+
     private
-    
+
     def url_unescape(string)
       string.tr('+', ' ').gsub(/((?:%[0-9a-fA-F]{2})+)/n) do
         [$1.delete('%')].pack('H*')
       end
     end
-
 
   end
 end

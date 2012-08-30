@@ -8,20 +8,18 @@
 
 - if can_edit?
   :css
-    .editable{}
-    .editable:hover{background-color:#ffc;}
+    .cms:hover{background-color:#ffc;}
 
   - css_class = ".#{args[:reference]}"
   :javascript
     $(document).ready(function(){
       $("#{css_class}").editable("/elements", {
-
         #{element.present? ? "loadurl: '/elements/#{element.id}?Rnd=' + Math.random().toString()," : ""}
-        submitdata: { 
-          utf8: "✓",
+        submitdata: {
+          utf8:               "✓",
           authenticity_token: #{form_authenticity_token.inspect},
-          element: {
-            reference: "#{args[:reference]}",
+          element:            {
+            reference:    "#{args[:reference]}",
             element_type: "text"
           }
         },
