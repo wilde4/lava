@@ -2,7 +2,7 @@
 - height      = args[:height]
 - image_attrs = {:width => width, :height => height, :alt => "#{element.value}"}
 
-.cms{:id => "", :class => "editable #{element.reference}", :style => "width:#{width}px;height:#{height}px;"}
+.cms{:id => "", :class => "editable #{element.md5_reference}", :style => "width:#{width}px;height:#{height}px;"}
   - if element.upload.present?
     - if element.url.present?
       = link_to element.url, :title => element.value do
@@ -24,9 +24,9 @@
       %ul
         - if element.upload.nil?
           %li{:id => "delete_link"}
-            = link_to "Upload an Image...", "#", :id => "ajaxupload_#{element.reference}"
+            = link_to "Upload an Image...", "#", :id => "ajaxupload_#{element.md5_reference}"
         - else
           %li{:id => "delete_link"}= link_to "Caption", "#", :onclick => "return change_caption('#{element.id}');"
           %li{:id => "delete_link"}= link_to "Link", "#", :onclick => "return change_url('#{element.id}');"
           %li{:id => "delete_link"}= link_to "Delete", l.element_path(element), :method => :delete, :confirm => "Delete this Image?"
-          %li{:id => "delete_link"}= link_to "Upload...", "#", :id => "ajaxupload_#{element.reference}"
+          %li{:id => "delete_link"}= link_to "Upload...", "#", :id => "ajaxupload_#{element.md5_reference}"

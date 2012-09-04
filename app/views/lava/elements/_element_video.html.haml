@@ -1,20 +1,11 @@
-- if element.present?
-  .cms{:id => "element_#{element.id}", :class => "editable #{args[:reference]}"}
-    = render "lava/elements/video", { :element => element, :args => args }
-
-- else
-  .cms{:id => "element_", :class => "editable #{args[:reference]}"}
-    Click to edit...
-    - if can_edit?
-      .video_controls
-        %ul
-          %li= link_to "Add YouTube Video", nil, :id => "ajaxupload_#{args[:reference]}"
+.cms{:id => "element_#{element.id}", :class => "editable #{element.md5_reference}"}
+  = render "lava/elements/video", { :element => element, :args => args }
 
 - if can_edit?
   :css
     .editable:hover{background-color:#ffc;}
 
-  - css_class = ".#{args[:reference]}"
+  - css_class = ".#{element.md5_reference}"
   :javascript
     $("#{css_class}").editable("/elements", {
       name:       "element[value]",
@@ -22,7 +13,7 @@
         utf8: "✓",
         authenticity_token: #{form_authenticity_token.inspect},
         element: {
-          reference: "#{args[:reference]}",
+          reference: "#{element.md5_reference}",
           element_type: "video"
         }
       },

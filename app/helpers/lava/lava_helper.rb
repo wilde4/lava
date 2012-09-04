@@ -13,8 +13,6 @@ module Lava
       supported_types = ["text", "image", "video"]
       raise ArgumentError, "No reference given." unless args.has_key?(:reference)
 
-      args[:reference] = sanitize_reference(args[:reference])
-
       element_type = args.has_key?(:element_type) ? args[:element_type] : "text"
       raise ArgumentError, "Element type unsupported." unless supported_types.include?(element_type)
 
@@ -29,12 +27,9 @@ module Lava
         args[:truncate]     = args.has_key?(:truncate) ? args[:truncate] : nil
       end
 
-      element = Element.find_or_create_element(:element_type => element_type, :reference => args[:reference])
+      md5_ref = Digest::MD5.hexdigest(args[:reference])
+      element = Element.find_or_create_element(:element_type => element_type, :reference => args[:reference], :md5_reference => md5_ref)
       render "lava/elements/element_#{element_type}", {:args => args, :element => element} if element.present?
-    end
-
-    def sanitize_reference(reference)
-      Digest::MD5.hexdigest(reference)
     end
 
   end

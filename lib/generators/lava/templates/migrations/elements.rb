@@ -1,7 +1,8 @@
 class CreateElementsTable < ActiveRecord::Migration
   def self.up
-    create_table :elements, :force => true do |t|    
+    create_table :elements, :force => true do |t|
       t.string   :reference
+      t.string   :md5_reference
       t.string   :element_type
       t.string   :upload_content_type
       t.integer  :upload_file_size

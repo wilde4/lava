@@ -11,12 +11,12 @@
     captions['#{element.id}'] = "#{element.value.gsub('"','') rescue ''}";
     urls['#{element.id}'] = "#{element.url.gsub('"','') rescue ''}";
 
-    function initialize_ajax_upload_controls_#{element.reference}(){
+    function initialize_ajax_upload_controls_#{element.md5_reference}(){
       if ($("#ajax_container").length == 0){
         $("body").append("<div id='ajax_container'><div id='ajax_response'></div></div>");
       }
 
-      new AjaxUpload("#ajaxupload_#{element.reference}",
+      new AjaxUpload("#ajaxupload_#{element.md5_reference}",
       {
         action:   '/elements',
         name:     'element[upload]',
@@ -27,9 +27,10 @@
             this.setData({
               'element[element_type]':  "image",
               'element[value]':         "ajax-upload",
-              'element[reference]':     "#{element.reference}",
+              //'element[reference]':     "#{element.reference}",
               'element[height]':        "#{args[:height]}",
               'element[width]':         "#{args[:width]}",
+              'element[md5_reference]': "#{element.md5_reference}",
               'utf8':                   "✓",
               'authenticity_token':     #{form_authenticity_token.inspect}
             });
@@ -46,12 +47,12 @@
         onComplete: function(file, response)
         {
           $("#ajax_container").hide();
-          $(".#{element.reference}").replaceWith(response);
-          initialize_ajax_upload_controls_#{element.reference}();
+          $(".#{element.md5_reference}").replaceWith(response);
+          initialize_ajax_upload_controls_#{element.md5_reference}();
         }
       });
     }
 
     $(document).ready(function(){
-      initialize_ajax_upload_controls_#{element.reference}();
+      initialize_ajax_upload_controls_#{element.md5_reference}();
     });
