@@ -1,8 +1,8 @@
 - width       = args[:width]
 - height      = args[:height]
-- image_attrs = {:width => width, :height => height, :alt => "#{element.value}"}
+- image_attrs = {:alt => "#{element.value}"}
 
-.cms{:id => "", :class => "editable #{element.md5_reference}", :style => "width:#{width}px;height:#{height}px;"}
+.cms{:id => "", :class => "editable #{element.md5_reference}"}
   - if element.upload.present?
     - if element.url.present?
       = link_to element.url, :title => element.value do

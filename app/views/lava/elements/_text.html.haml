@@ -5,7 +5,7 @@
     = raw truncate_words(element.value, args[:truncate])
   - else
     :markdown
-      #{element.value}
+      #{add_markup(element.value)}
 
 - else
   - if can_edit?
