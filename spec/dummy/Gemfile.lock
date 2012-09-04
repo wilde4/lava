@@ -1,7 +1,7 @@
 PATH
   remote: ../../
   specs:
-    lava (0.0.6)
+    lava (0.0.7)
       aws-s3
       dragonfly (~> 0.9.11)
       fog (~> 1.3.1)
@@ -106,7 +106,7 @@ GEM
       json (>= 1.4.6)
     github-markdown (0.5.1)
     github-markup (0.7.4)
-    gollum (2.1.7)
+    gollum (2.1.10)
       github-markdown
       github-markup (>= 0.7.0, < 1.0.0)
       grit (~> 2.5.0)
