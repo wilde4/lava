@@ -2,7 +2,7 @@
   - if args[:no_text_modifiers]
     = raw element.value
   - elsif args[:truncate].present?
-    = raw truncate_words(element.value, args[:truncate])
+    = raw truncate_words(strip_tags(element.value), args[:truncate])
   - else
     :markdown
       #{add_markup(element.value)}
