@@ -1,21 +1,11 @@
 module Lava
   module LavaHelper
 
-    # def add_markup(value)
-    #   # Custom add_markup method should be included
-    #   # in your project.  This will likely also include
-    #   # widget replacement codes and a markup converter.
-    # 
-    #   value.split("\n").map{|p| "<p>#{p}</p>" if p.present? }.join("") rescue value
-    # end
-    
     def add_markup(value)
-      # output = RDiscount.new(value).to_html.html_safe
       output = value.to_str.gsub(/\{\{(.*)\}\}/) do |keyword|
         partial = keyword.gsub(/(\{|\})/, "")
         if partial[0..5] == 'image_'
-          # Try and render the image
-
+          # Try to render the image
           pieces = partial.split("_")
           begin
             image = Image.find(pieces[1])
@@ -30,7 +20,7 @@ module Lava
             "** Error: Image ID <b>#{pieces[1]}</b> not found **"
           end
         else
-          # Try and render a manual partial
+          # Try to render a manual partial
           begin
             render "layouts/widgets/#{partial}"
           rescue
@@ -40,6 +30,34 @@ module Lava
       end
       output
     end
+
+    # def add_markup(value)
+    #   output = value.to_str.gsub(/\{\{(.*)\}\}/) do |keyword|
+    #     partial = keyword.gsub(/(\{|\})/, "")
+    #     if partial =~ /^image_/
+    #       prefix, image_id, image_partial = partial.split("_")
+    #       render_image(image_partial, image_id)
+    #     else
+    #       render_widget(partial)
+    #     end
+    #   end
+    #   output
+    # end
+
+    # def render_widget(partial)
+    #   render "layouts/widgets/#{partial}"
+    # rescue ActionView::MissingTemplate => e
+    #   "** Error: Couldn't find widget <b>#{partial}</b> **"
+    # end
+
+    # def render_image(partial, image_id)
+    #   image = Image.find(image_id)
+    #   render "layouts/widgets/images/#{image_partial}", :image => image
+    # rescue ActiveRecord::RecordNotFound => e
+    #   e.message
+    # rescue ActionView::MissingTemplate => e
+    #   "** Error: Image Style <b>#{image_partial}</b> not found **"
+    # end
 
     def lava(args = {})
       supported_types = ["text", "image", "video"]
@@ -63,8 +81,6 @@ module Lava
       element = Element.find_or_create_element(:element_type => element_type, :reference => args[:reference], :md5_reference => md5_ref)
       render "lava/elements/element_#{element_type}", {:args => args, :element => element} if element.present?
     end
-    
-    
 
   end
 end
