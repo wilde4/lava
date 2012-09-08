@@ -22,9 +22,21 @@ module Lava
         else
           # Try to render a manual partial
           begin
-            render "layouts/widgets/#{partial}"
+            # partial may contain an optional variable, e.g. section_menu(4)
+            # we want to pass this variable to the widget so it can take 
+            # an option, e.g. social_churn(abs342-asdlkfjl3...)
+            if partial.scan(/(\w*)\((\w*)\)/).flatten.count > 1
+              # Hooray! This partial contains an optioanl param...
+              pieces = partial.scan(/(\w*)\((\w*)\)/).flatten
+              partial = pieces[0]
+              render :partial => "layouts/widgets/#{partial}", :locals => {:optional_param => pieces[1] }                            
+            else
+              render "layouts/widgets/#{partial}"              
+            end
+            
+
           rescue
-            "** Error: Couldn't find widget <b>#{partial}</b> **"
+            "** Error: <b>#{partial}</b> **"
           end
         end
       end
