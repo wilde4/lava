@@ -17,9 +17,10 @@
     - elsif args.has_key?(:url) && args[:url].present?
       = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"})), args[:url]
     - else
-      = image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
+      - if args[:edit] != false
+        = image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
 
-  - if can_edit?
+  - if can_edit? && (args[:edit] != false)
     .image_controls
       %ul
         - if element.upload.nil?

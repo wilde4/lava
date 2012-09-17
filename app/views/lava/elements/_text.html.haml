@@ -8,5 +8,5 @@
       #{add_markup(element.value)}
 
 - else
-  - if can_edit?
+  - if can_edit? && !args[:truncate]
     Click to edit...

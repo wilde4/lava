@@ -1,7 +1,9 @@
 .cms{:id => "#{element.id}", :class => "editable #{element.md5_reference}"}
   = render "lava/elements/text", { :element => element, :args => args }
 
-- if can_edit?
+
+
+- if can_edit? && !args[:truncate]
   :css
     .cms:hover{background-color:#ffc;}
 
