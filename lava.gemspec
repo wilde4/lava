@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.name          = "lava"
   s.version       = Lava::VERSION
   s.platform      = Gem::Platform::RUBY
-  s.authors       = ["Gavin Laking"]
-  s.email         = ["gavinlaking@gmail.com"]
+  s.authors       = ["Robert Wilde"]
+  s.email         = ["r.wilde@volcanic.co.uk"]
   s.homepage      = "http://"
   s.description   = ""
   s.summary       = "lava-#{s.version}"

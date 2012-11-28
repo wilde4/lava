@@ -10,6 +10,18 @@ module Lava
       @element = Lava::Element.new
     end
 
+    def save_content
+      # {"content"=>{"primary_4"=>{"type"=>"full", "data"=>{}, "value"=>"<p>hello world alksdjf lasdfa<br>a<br>sdf<br>asdf<br><br></p>", "snippets"=>{}}}, "element"=>{}}
+      params[:content].each do |k,v|
+        element_id = k.gsub("primary_", "")
+        value = v["value"]
+        @element = Lava::Element.find(element_id)
+        @element.update_attribute(:value, value)
+      end
+
+      render text: ""
+    end
+
     def create
       @element = Lava::Element.find_or_create_element(params[:element])
       @element.update_attributes({:value => params[:value]}) if params[:value]
