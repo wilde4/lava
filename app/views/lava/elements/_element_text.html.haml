@@ -1,3 +1,7 @@
-#primary{:"data-mercury" => "full", :id => "#{element.id}"}
+- if args[:no_text_modifiers]
+  - editor_complexity = "full"
+- else
+  - editor_complexity = "full"
+#primary{:"data-mercury" => "#{editor_complexity}", :id => "#{element.id}"}
   = render "lava/elements/text", { :element => element, :args => args }
   

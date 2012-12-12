@@ -1,13 +1,12 @@
 - if element.value.present?
   - if args[:no_text_modifiers]
-    = raw element.value
+    = raw strip_tags(element.value)
   - elsif args[:truncate].present?
     - value_with_html = Redcarpet::Markdown.new(Redcarpet::Render::HTML, {:autolink => false, :space_after_headers => true}).render(element.value)
     = raw truncate_words(strip_tags(value_with_html), args[:truncate])
     
   - else
-    :markdown
-      #{add_markup(element.value)}
+    =raw(element.value)
 
 - else
   - if can_edit? && !args[:truncate]
