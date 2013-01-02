@@ -6,7 +6,10 @@
     = raw truncate_words(strip_tags(value_with_html), args[:truncate])
     
   - else
-    =raw(element.value)
+    - if params[:mercury_frame]
+      =raw(element.value)      
+    - else
+      =raw(add_markup(element.value))
 
 - else
   - if can_edit? && !args[:truncate]

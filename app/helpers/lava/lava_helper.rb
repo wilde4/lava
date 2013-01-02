@@ -2,7 +2,7 @@ module Lava
   module LavaHelper
 
     def add_markup(value)
-      output = value.to_str.gsub(/\{\{(.*)\}\}/) do |keyword|
+      output = value.to_str.gsub(/\{\{([a-zA-Z0-9_-]*)\}\}/) do |keyword|
         partial = keyword.gsub(/(\{|\})/, "")
         if partial[0..5] == 'image_'
           # Try to render the image
@@ -36,7 +36,7 @@ module Lava
             
 
           rescue
-            "** Error: <b>#{partial}</b> **"
+            "** Unknown Error: <b>#{partial}</b> **"
           end
         end
       end
