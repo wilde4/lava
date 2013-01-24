@@ -25,9 +25,23 @@
       %ul
         - if element.upload.nil?
           %li{:id => "delete_link"}
-            = link_to "Upload an Image...", "#", :id => "ajaxupload_#{element.md5_reference}"
+            .dirty_upload_container
+              = form_tag '/elements', :method => :post, :remote => true, :multipart => true do
+                .lab Upload...
+                = file_field_tag "element[upload]", :class => "dirty_upload", :onchange => "this.form.submit();"
+                = hidden_field_tag "element[reference]", "#{element.reference}"
+                = hidden_field_tag "element[value]", "ajax-upload"
+                = hidden_field_tag "element[element_type]", "image"
+                
         - else
           %li{:id => "delete_link"}= link_to "Caption", "#", :onclick => "return change_caption('#{element.id}');"
           %li{:id => "delete_link"}= link_to "Link", "#", :onclick => "return change_url('#{element.id}');"
           %li{:id => "delete_link"}= link_to "Delete", l.element_path(element), :method => :delete, :confirm => "Delete this Image?"
-          %li{:id => "delete_link"}= link_to "Upload...", "#", :id => "ajaxupload_#{element.md5_reference}"
+          %li{:id => "delete_link"}
+            .dirty_upload_container
+              = form_tag '/elements', :method => :post, :remote => true, :multipart => true do
+                .lab Upload...
+                = file_field_tag "element[upload]", :class => "dirty_upload", :onchange => "this.form.submit();"
+                = hidden_field_tag "element[reference]", "#{element.reference}"
+                = hidden_field_tag "element[value]", "ajax-upload"
+                = hidden_field_tag "element[element_type]", "image"

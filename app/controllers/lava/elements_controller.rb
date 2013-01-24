@@ -26,8 +26,18 @@ module Lava
       @element = Lava::Element.find_or_create_element(params[:element])
       @element.update_attributes({:value => params[:value]}) if params[:value]
       @element.update_attributes(params[:element]) if params[:element]
-      args = {:width => params[:element][:width], :height => params[:element][:height]}
-      render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element, :args => args }
+      # args = {:width => params[:element][:width], :height => params[:element][:height]}
+      
+      respond_to do |format|
+        format.js {
+          render :partial => "lava/elements/#{@element.element_type}",  :locals => { :element => @element, :args => args }
+        }
+        format.html {
+          redirect_to :back
+        }
+      end
+      
+
     end
 
     def edit
