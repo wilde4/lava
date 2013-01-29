@@ -4,7 +4,7 @@
   - elsif args[:truncate].present?
     - value_with_html = Redcarpet::Markdown.new(Redcarpet::Render::HTML, {:autolink => false, :space_after_headers => true}).render(element.value)
     = raw truncate_words(strip_tags(value_with_html), args[:truncate])
-    
+  
   - else
     - if params[:mercury_frame]
       =raw(element.value)      
@@ -14,3 +14,9 @@
 - else
   - if can_edit? && !args[:truncate]
     Click to edit...
+
+
+
+
+
+  
