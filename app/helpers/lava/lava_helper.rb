@@ -19,25 +19,39 @@ module Lava
           rescue
             "** Error: Image ID <b>#{pieces[1]}</b> not found **"
           end
-        else
-          # Try to render a manual partial
-          begin
-            # partial may contain an optional variable, e.g. section_menu(4)
-            # we want to pass this variable to the widget so it can take 
-            # an option, e.g. social_churn(abs342-asdlkfjl3...)
-            if partial.scan(/(\w*)\(([\w\-]*)\)/).flatten.count > 1
-              # Hooray! This partial contains an optioanl param...
-              pieces = partial.scan(/(\w*)\(([\w\-]*)\)/).flatten
-              partial = pieces[0]
-              render :partial => "layouts/widgets/#{partial}", :locals => {:optional_param => pieces[1] }                            
-            else
-              render "layouts/widgets/#{partial}"              
-            end
-            
+          
 
-          rescue
-            "** Unknown Error: <b>#{partial}</b> **"
+        else
+
+          
+          if partial[0..6] == 'upload_'
+            begin
+              pieces = partial.split("_")
+              upload = Upload.find(pieces[1])
+              render "layouts/widgets/uploads/upload", :upload => upload
+            rescue
+              "<b>** Upload Error **</b>"
+            end
+          else
+            # Try to render a manual partial
+            begin
+              # partial may contain an optional variable, e.g. section_menu(4)
+              # we want to pass this variable to the widget so it can take 
+              # an option, e.g. social_churn(abs342-asdlkfjl3...)
+              if partial.scan(/(\w*)\(([\w\-]*)\)/).flatten.count > 1
+                # Hooray! This partial contains an optioanl param...
+                pieces = partial.scan(/(\w*)\(([\w\-]*)\)/).flatten
+                partial = pieces[0]
+                render :partial => "layouts/widgets/#{partial}", :locals => {:optional_param => pieces[1] }                            
+              else
+                render "layouts/widgets/#{partial}"              
+              end
+            rescue
+              "** Unknown Error: <b>#{partial}</b> **"
+            end
           end
+          
+          
         end
       end
       output
