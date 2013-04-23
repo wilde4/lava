@@ -1,6 +1,11 @@
 module Lava
   module LavaHelper
-
+    
+    def remove_placeholder(value)
+      value = "" if (value == "Click to edit...")
+      value
+    end
+    
     def add_markup(value)
       output = value.to_str.gsub(/\{\{([a-zA-Z0-9_-]*)\}\}/) do |keyword|
         partial = keyword.gsub(/(\{|\})/, "")
