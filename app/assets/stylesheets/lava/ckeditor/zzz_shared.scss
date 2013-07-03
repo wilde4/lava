@@ -1,3 +1,8 @@
 .editable {
-  background: #ffc;
+  border: 2px dotted #ccc;
+  outline: 0;
+  
+  &.not-saved {
+    border: 2px dotted #dd0000;
+  }
 }

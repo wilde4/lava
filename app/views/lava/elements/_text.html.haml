@@ -1,15 +1,5 @@
-- if element.value.present?
-  - if args[:no_text_modifiers]
-    = raw strip_tags(remove_placeholder(element.value))
-  - elsif args[:truncate].present?
-    - value_with_html = element.value
-    = raw truncate_words(strip_tags(remove_placeholder(value_with_html)), args[:truncate])
-  
-  - else
-    = element.value
-
+- if can_edit?
+  .editable{:id => element.md5_reference, :contenteditable => "true"}
+    = element.value.html_safe rescue "Click to Edit..."
 - else
-  - if can_edit? && !args[:truncate]
-    .editable{:id => element.md5_reference, :contenteditable => "true"}
-      Click to edit...
-      
+  = element.value.html_safe rescue nil
