@@ -2,16 +2,14 @@
   - if args[:no_text_modifiers]
     = raw strip_tags(remove_placeholder(element.value))
   - elsif args[:truncate].present?
-    - value_with_html = Redcarpet::Markdown.new(Redcarpet::Render::HTML, {:autolink => false, :space_after_headers => true}).render(element.value)
+    - value_with_html = element.value
     = raw truncate_words(strip_tags(remove_placeholder(value_with_html)), args[:truncate])
   
   - else
-    - if params[:mercury_frame]
-      =raw(remove_placeholder(element.value))      
-    - else
-      =raw(remove_placeholder(add_markup(element.value)))
+    = element.value
 
 - else
   - if can_edit? && !args[:truncate]
-    Click to edit...
-  
+    .editable{:id => element.md5_reference, :contenteditable => "true"}
+      Click to edit...
+      
