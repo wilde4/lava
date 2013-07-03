@@ -1,6 +1,10 @@
 = Lava
 
+== CKEditor Version
+
 == Installation
+
+
 
 Add the following to your Gemfile:
 
