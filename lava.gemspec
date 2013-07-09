@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml',          '~> 3.1.4'
   s.add_dependency 'rack-cache',    '>= 0.5.3'
   s.add_dependency 'redcarpet',     '~> 2.1.1'
-  s.add_dependency 'gollum',        '~> 2.1.7'
+  s.add_dependency 'gollum',        '~> 2.4.15'
   s.add_dependency 'rmagick',       '~> 2.13.1'
   s.add_dependency 'simple_form',   '2.0.1'
 
-  s.add_development_dependency "cucumber-rails",      "1.3.0"
+  # s.add_development_dependency "cucumber-rails",      "1.3.0"
   s.add_development_dependency "database_cleaner",    "0.7.2"
   s.add_development_dependency "factory_girl",        "2.6.3"
   s.add_development_dependency "json",                "1.6.6"

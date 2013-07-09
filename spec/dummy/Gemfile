@@ -22,13 +22,13 @@ group :production do
   # gem "lava", :git => "git://github.com/wilde4/lava_gem.git"
 end
 
-group :test do
-  gem "cucumber-rails", :require => false
-  gem "database_cleaner"
-  gem "factory_girl"
-  gem "launchy"
-  gem "pickle"
-  gem "rspec-rails"
-  gem "shoulda"
-  gem "watchr"
-end
+# group :test do
+#   # gem "cucumber-rails", :require => false
+#   # gem "database_cleaner"
+#   # gem "factory_girl"
+#   # gem "launchy"
+#   # gem "pickle"
+#   # gem "rspec-rails"
+#   # gem "shoulda"
+#   # gem "watchr"
+# end
