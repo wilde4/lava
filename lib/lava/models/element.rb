@@ -4,7 +4,6 @@ module Lava
       extend ActiveSupport::Concern
 
       included do
-        attr_accessor :width, :height
         
         validates_presence_of :reference
 
@@ -12,14 +11,26 @@ module Lava
         
         default_scope :order => "created_at DESC"
 
+        def timestamp=(value)
+          true
+        end
+        
         def self.find_or_create_element(element_attributes)
-          element = self.where({
+          elements = self.where({
             :reference    => element_attributes[:reference],
-            :element_type => element_attributes[:element_type]}).first
+            :element_type => element_attributes[:element_type]
+          })
+
+          if(element_attributes[:timestamp].present?)
+            timestamp = Time.at(element_attributes[:timestamp].to_i)
+            elements = elements.where("created_at <= ?", timestamp)
+          end
+            
+          element = elements.first
           if element.nil?
             element = self.create(element_attributes)
           end
-          element
+            element
         end
       end
     end

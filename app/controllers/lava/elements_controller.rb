@@ -14,6 +14,8 @@ module Lava
         :reference => @element.reference,
         :md5_reference => @element.md5_reference,
         :value => params[:value],
+        :page_id => params[:page_id],
+        :path => params[:path],
         :user => current_user,
         :element_type => "text"
       })

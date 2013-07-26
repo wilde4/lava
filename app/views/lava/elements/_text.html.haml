@@ -1,5 +1,5 @@
 - if can_edit?
-  .editable{:id => element.md5_reference, :contenteditable => "true"}
+  .editable{:id => element.md5_reference, :contenteditable => "true", :"data-page_id" => @page.id, :"data-path" => request.path}
     = element.value.html_safe rescue "Click to Edit..."
 - else
   = element.value.html_safe rescue nil

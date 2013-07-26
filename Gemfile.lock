@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lava (3.0.0)
+    lava (3.0.1)
       rails (~> 4.0.0)
 
 GEM
