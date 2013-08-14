@@ -88,7 +88,7 @@ module Lava
         :reference => args[:reference],
         :md5_reference => md5_ref,
         :path => request.path,
-        :page_id => @page.id,
+        :page_id => (@page.id rescue nil),
         :user => current_user,
         :timestamp => params[:timestamp]
       )
