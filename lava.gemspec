@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Robert Wilde"]
   s.email         = ["r.wilde@volcanic.co.uk"]
-  s.homepage      = "http://"
-  s.description   = ""
+  s.homepage      = "http://www.volcanic.co.uk"
+  s.description   = "CMS Develoepd by Volcanic"
   s.summary       = "lava-#{s.version}"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
