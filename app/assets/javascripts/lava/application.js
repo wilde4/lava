@@ -1,4 +1,3 @@
-//= require "jquery"
 //= require "lava/ajaxupload.js"
 //= require "lava/jquery.boxy.js"
 //= require "lava/jquery.jeditable.js"
