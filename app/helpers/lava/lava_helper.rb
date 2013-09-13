@@ -62,37 +62,11 @@ module Lava
       output
     end
 
-    # def add_markup(value)
-    #   output = value.to_str.gsub(/\{\{(.*)\}\}/) do |keyword|
-    #     partial = keyword.gsub(/(\{|\})/, "")
-    #     if partial =~ /^image_/
-    #       prefix, image_id, image_partial = partial.split("_")
-    #       render_image(image_partial, image_id)
-    #     else
-    #       render_widget(partial)
-    #     end
-    #   end
-    #   output
-    # end
-
-    # def render_widget(partial)
-    #   render "layouts/widgets/#{partial}"
-    # rescue ActionView::MissingTemplate => e
-    #   "** Error: Couldn't find widget <b>#{partial}</b> **"
-    # end
-
-    # def render_image(partial, image_id)
-    #   image = Image.find(image_id)
-    #   render "layouts/widgets/images/#{image_partial}", :image => image
-    # rescue ActiveRecord::RecordNotFound => e
-    #   e.message
-    # rescue ActionView::MissingTemplate => e
-    #   "** Error: Image Style <b>#{image_partial}</b> not found **"
-    # end
-
     def lava(args = {})
       supported_types = ["text", "image", "video"]
       raise ArgumentError, "No reference given." unless args.has_key?(:reference)
+      # raise ArgumentError, "No timestamp set." unless args.has_key?(:reference)
+
 
       element_type = args.has_key?(:element_type) ? args[:element_type] : "text"
       raise ArgumentError, "Element type unsupported." unless supported_types.include?(element_type)
@@ -109,7 +83,15 @@ module Lava
       end
 
       md5_ref = Digest::MD5.hexdigest(args[:reference])
-      element = Element.find_or_create_element(:element_type => element_type, :reference => args[:reference], :md5_reference => md5_ref)
+      element = Element.find_or_create_element(
+        :element_type => element_type,
+        :reference => args[:reference],
+        :md5_reference => md5_ref,
+        :path => request.path,
+        :page_id => (@page.id rescue nil),
+        :user => current_user,
+        :timestamp => params[:timestamp]
+      )
       render "lava/elements/element_#{element_type}", {:args => args, :element => element} if element.present?
     end
 

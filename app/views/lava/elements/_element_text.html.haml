@@ -2,6 +2,6 @@
 - if args[:no_edit] == true
   = render "lava/elements/text", { :element => element, :args => args }
 - else
-  #primary{:"data-mercury" => "#{editor_complexity}", :id => "#{element.id}"}
+  #primary{:id => "#{element.id}"}
     = render "lava/elements/text", { :element => element, :args => args }
   
