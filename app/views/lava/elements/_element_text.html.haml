@@ -1,7 +1,8 @@
 - editor_complexity = "full"
-- if args[:no_edit] == true
-  = render "lava/elements/text", { :element => element, :args => args }
-- else
+- if can_edit?
   #primary{:id => "#{element.id}"}
     = render "lava/elements/text", { :element => element, :args => args }
+- else
+  = element.value.html_safe rescue nil
+
   
