@@ -16,16 +16,19 @@ module Lava
         element_id = k.gsub("primary_", "")
         value = v["value"]
         @element = Lava::Element.find(element_id)
-        @element.update_attribute(:value, value)
+        if @element.update_attributes({:value => value})
+          puts "++++++++++ UPDATE: OK ++++++++++";
+        else
+          puts "++++++++++ UPDATE: FAILED ++++++++++";          
+        end
       end
-
       render text: ""
     end
 
     def create
-      @element = Lava::Element.find_or_create_element(params[:element])
+      @element = Lava::Element.find_or_create_element(params[:element].permit!)
       @element.update_attributes({:value => params[:value]}) if params[:value]
-      @element.update_attributes(params[:element]) if params[:element]
+      @element.update_attributes(params[:element].permit!) if params[:element]
       # args = {:width => params[:element][:width], :height => params[:element][:height]}
       
       respond_to do |format|
@@ -48,7 +51,7 @@ module Lava
       @element = Lava::Element.find(params[:id])
       params[:element][:value] = url_unescape(params[:element][:value]) if params[:element][:value].present?
       params[:element][:url] = url_unescape(params[:element][:url]) if params[:element][:url].present?
-      @element.update_attributes(params[:element])
+      @element.update_attributes(params[:element].permit!)
 
       respond_to do |format|
         format.js
