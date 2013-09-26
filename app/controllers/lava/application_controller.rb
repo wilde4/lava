@@ -1,5 +1,5 @@
 module Lava
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ActionController::Base
 
     # hook this into devise if you wish
     # def can_edit?

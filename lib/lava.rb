@@ -1,10 +1,12 @@
+require "lava/engine"
+
 require "active_support/dependencies"
 require "haml"
 require "simple_form"
 
 module Lava
 
-  mattr_accessor :app_root
+  # mattr_accessor :app_root
 
   module Controllers
     #autoload :Helpers, 'lava/controllers/helpers'
@@ -24,5 +26,3 @@ module Lava
   end
 
 end
-
-require "lava/engine"

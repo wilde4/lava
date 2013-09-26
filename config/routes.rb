@@ -1,3 +1,3 @@
 Lava::Engine.routes.draw do
-  resources :elements
+  resources :elements, :only => [:show]
 end
