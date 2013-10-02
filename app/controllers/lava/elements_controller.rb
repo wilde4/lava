@@ -44,11 +44,11 @@ module Lava
     end
 
     def edit
-      @element = Lava::Element.find_by_instance_id(params[:instance_id])
+      @element = Lava::Element.find_by instance_id: params[:instance_id]
     end
 
     def update
-      @element = Lava::Element.find(params[:id])
+      @element = Lava::Element.find params[:id]
       params[:element][:value] = url_unescape(params[:element][:value]) if params[:element][:value].present?
       params[:element][:url] = url_unescape(params[:element][:url]) if params[:element][:url].present?
       @element.update_attributes(params[:element].permit!)
