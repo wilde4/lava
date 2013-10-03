@@ -26,8 +26,8 @@ module Lava
     end
 
     def create
-      @element = Lava::Element.find_or_create_element(params[:element].permit!)
-      @element.update_attributes({:value => params[:value]}) if params[:value]
+      @element = Lava::Element.find_or_create_element(params[:element])
+      @element.update_attributes({:value => params[:value].permit!}) if params[:value]
       @element.update_attributes(params[:element].permit!) if params[:element]
       # args = {:width => params[:element][:width], :height => params[:element][:height]}
       
