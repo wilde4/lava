@@ -1,4 +1,3 @@
-
 - width       = args[:width]
 - height      = args[:height]
 - image_attrs = {:alt => "#{element.value}"}
@@ -21,7 +20,7 @@
       - if args[:edit] != false
         = image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
 
-  - if can_edit? && (args[:edit] != false)
+  - if args[:force_edit] || (can_edit? && (args[:edit] != false))
     .image_controls
       %ul
         - if element.upload.nil?
@@ -29,7 +28,7 @@
             .dirty_upload_container
               = form_tag '/elements', :method => :post, :remote => true, :multipart => true do
                 .lab Upload...
-                = file_field_tag "element[upload]", :class => "dirty_upload", :onchange => "this.form.submit();"
+                = file_field_tag "element[upload]", :class => "dirty_upload", :onchange => "$('#ajax_container').show(); this.form.submit();"
                 = hidden_field_tag "element[reference]", "#{element.reference}"
                 = hidden_field_tag "element[value]", "ajax-upload"
                 = hidden_field_tag "element[element_type]", "image"
@@ -42,7 +41,7 @@
             .dirty_upload_container
               = form_tag '/elements', :method => :post, :remote => true, :multipart => true do
                 .lab Upload...
-                = file_field_tag "element[upload]", :class => "dirty_upload", :onchange => "this.form.submit();"
+                = file_field_tag "element[upload]", :class => "dirty_upload", :onchange => "$('#ajax_container').show(); this.form.submit();"
                 = hidden_field_tag "element[reference]", "#{element.reference}"
                 = hidden_field_tag "element[value]", "ajax-upload"
                 = hidden_field_tag "element[element_type]", "image"

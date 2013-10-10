@@ -3,17 +3,16 @@
 - else
   - path = "no upload"
 
-- if ((element.present? && element.upload.present?) || can_edit?)
+- if ((element.present? && element.upload.present?) || can_edit? || args[:force_edit])
   = render "lava/elements/image", { :element => element, :args => args }
 
-- if can_edit?
+- if args[:force_edit] || can_edit?
   :javascript
     captions['#{element.id}'] = "#{element.value.gsub('"','') rescue ''}";
     urls['#{element.id}'] = "#{element.url.gsub('"','') rescue ''}";
 
-    
     $(document).ready(function(){
       if ($("#ajax_container").length == 0){
-        $("body").append("<div id='ajax_container'><div id='ajax_response'></div></div>");
+        $("body").append("<div id='ajax_container'><div id='ajax_response'>Uploading Image...</div></div>");
       }
     });
