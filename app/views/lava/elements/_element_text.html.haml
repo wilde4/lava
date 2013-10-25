@@ -3,6 +3,10 @@
   #primary{:id => "#{element.id}"}
     = render "lava/elements/text", { :element => element, :args => args }
 - else
-  = element.value.html_safe rescue nil
+  - if args[:no_text_modifiers] == true
+    = strip_tags element.value.html_safe rescue nil
+  - else
+    = element.value.html_safe rescue nil
+  
 
   
