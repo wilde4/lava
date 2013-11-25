@@ -4,7 +4,7 @@ module Lava
       extend ActiveSupport::Concern
 
       included do
-        file_accessor :upload
+        dragonfly_accessor :upload
 
         default_scope :order => "created_at DESC"
       end
