@@ -13,12 +13,12 @@
       = image_tag(element.upload.thumb("#{width}x#{height}\#").url, image_attrs)
   - else
     - if element.url.present?
-      = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
+      = link_to image_tag("/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/lava/stripe.png')"}))
     - elsif args.has_key?(:url) && args[:url].present?
-      = link_to image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"})), args[:url]
+      = link_to image_tag("/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/lava/stripe.png')"})), args[:url]
     - else
       - if args[:edit] != false
-        = image_tag("/assets/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/assets/lava/stripe.png')"}))
+        = image_tag("/lava/transparent-bg.gif", image_attrs.merge({:style => "background:url('/lava/stripe.png')"}))
 
   - if args[:force_edit] || (can_edit? && (args[:edit] != false))
     .image_controls
