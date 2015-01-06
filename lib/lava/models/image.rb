@@ -6,7 +6,7 @@ module Lava
       included do
         dragonfly_accessor :upload
 
-        default_scope :order => "created_at DESC"
+        default_scope { order(created_at: :desc) }
       end
     end
   end
