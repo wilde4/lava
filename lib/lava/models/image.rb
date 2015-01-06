@@ -5,8 +5,8 @@ module Lava
 
       included do
         file_accessor :upload
-
-        default_scope :order => "created_at DESC"
+        
+        default_scope { order(created_at: :desc) }
       end
     end
   end
