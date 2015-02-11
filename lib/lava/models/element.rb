@@ -9,7 +9,7 @@ module Lava
 
         dragonfly_accessor :upload
         
-        default_scope { :order => "created_at DESC" }
+        default_scope { order('created_at DESC') }
 
         def timestamp=(value)
           true
